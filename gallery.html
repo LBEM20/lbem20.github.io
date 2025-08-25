@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LBEM | Gallery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="assets/favicon.jpg">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 18px;
+            margin-bottom: 2rem;
+        }
+        .gallery-img,
+        .gallery-video-thumb {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(33,125,187,0.08);
+            cursor: pointer;
+            position: relative;
+            background: #eee;
+            display: block;
+        }
+        .gallery-video-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            display: block;
+        }
+        .gallery-video-thumb span {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            font-size: 2.5rem;
+            color: #fff;
+            background: rgba(33,125,187,0.7);
+            border-radius: 50%;
+            padding: 0.2em 0.4em;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-bg">
+        <header class="main-header">
+            <div class="header-flex" style="flex-direction: column; align-items: center; justify-content: center;">
+                <img src="assets/logo.jpg" alt="LBEM Logo" class="logo" style="margin: 0 auto 16px auto; display: block;">
+                <div class="header-title" style="text-align: center;">
+                    <h1 class="center-title">Gallery</h1>
+                </div>
+            </div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="structure.html">Structure</a>
+                <a href="contact.html">Contact</a>
+                <a href="efforts.html">Efforts</a>
+                <a href="gallery.html" class="active">Gallery</a>
+            </nav>
+        </header>
+        <div class="hero-spacer"></div>
+    </div>
+    <div class="container">
+        <section>
+            <h2 style="color: #217dbb; font-weight: 700; letter-spacing: 1px; margin-bottom: 1.2rem;">
+                Our Work in Pictures &amp; Video
+            </h2>
+            <div class="gallery-grid">
+                <!-- 15 image placeholders -->
+                <img src="assets/gallery1.jpg" alt="Gallery Image 1" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery2.jpg" alt="Gallery Image 2" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery3.jpg" alt="Gallery Image 3" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery4.jpg" alt="Gallery Image 4" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery5.jpg" alt="Gallery Image 5" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery6.jpg" alt="Gallery Image 6" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery7.jpg" alt="Gallery Image 7" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery8.jpg" alt="Gallery Image 8" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery9.jpg" alt="Gallery Image 9" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery10.jpg" alt="Gallery Image 10" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery11.jpg" alt="Gallery Image 11" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery12.jpg" alt="Gallery Image 12" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery13.jpg" alt="Gallery Image 13" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery14.jpg" alt="Gallery Image 14" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery15.jpg" alt="Gallery Image 15" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery16.jpg" alt="Gallery Image 16" class="gallery-img" onclick="openLightbox(this.src)">
+                <img src="assets/gallery17.jpg" alt="Gallery Image 17" class="gallery-img" onclick="openLightbox(this.src)">
+                <!-- 1 video placeholder, styled to match images -->
+                <div class="gallery-video-thumb" onclick="openVideoLightbox('assets/video1.mp4')" style="cursor:pointer;">
+                    <img src="assets/video-thumb1.jpg" alt="Video Thumbnail" style="width:100%; border-radius:10px;">
+                    <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:2.5rem;color:#fff;background:rgba(33,125,187,0.7);border-radius:50%;padding:0.2em 0.4em;">&#9658;</span>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        &copy; 2025 Leadership Building and Empowerment Ministry (LBEM)
+    </footer>
+
+    <!-- Lightbox Modal for Images -->
+    <div id="lightbox-modal">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" style="max-width:90vw; max-height:80vh; border-radius:12px;">
+    </div>
+
+    <!-- Lightbox Modal for Videos -->
+    <div id="video-lightbox-modal">
+        <span class="lightbox-close" onclick="closeVideoLightbox()">&times;</span>
+        <video id="lightbox-video" controls style="max-width:90vw; max-height:80vh; border-radius:12px;">
+            <source src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+    function openLightbox(src) {
+        document.getElementById('lightbox-img').src = src;
+        document.getElementById('lightbox-modal').classList.add('active');
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox-modal').classList.remove('active');
+        document.getElementById('lightbox-img').src = '';
+    }
+    function openVideoLightbox(src) {
+        document.getElementById('lightbox-video').src = src;
+        document.getElementById('video-lightbox-modal').classList.add('active');
+    }
+    function closeVideoLightbox() {
+        document.getElementById('video-lightbox-modal').classList.remove('active');
+        document.getElementById('lightbox-video').src = '';
+    }
+    </script>
+</body>
+</html>
